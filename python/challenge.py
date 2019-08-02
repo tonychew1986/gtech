@@ -6,34 +6,39 @@
 import os
 
 
-def checkFiles():
-    currentPath = os.path.dirname(os.path.abspath(__file__))
-    print("currentPath", currentPath)
+class challenge(object):
+    def __init__(self, data={}):
+        self.files = []
 
-    files = []
+    def checkFiles(self, path, searchTerm):
+        currentPath = os.path.dirname(os.path.abspath(__file__))
+        print("currentPath", currentPath)
 
-    for r, d, f in os.walk("data"):
-        # print("-----")
-        # print("root", r)
-        # print("directory", d)
-        # print("file", f)
+        for r, d, f in os.walk(path):
+            # print("-----")
+            # print("root", r)
+            # print("directory", d)
+            # print("file", f)
 
-        for file in f:
-            if '.js' in file:
-                filePath = r + "/" + file
-                # print("filePath", filePath)
+            for file in f:
+                if '.js' in file:
+                    filePath = r + "/" + file
+                    # print("filePath", filePath)
 
-                txt = open(filePath).read()
-                # print("txt", txt)
+                    txt = open(filePath).read()
+                    # print("txt", txt)
 
-                if 'TODO' in txt:
-                    fullPath = os.path.join(currentPath, filePath)
-                    print(fullPath)
+                    if searchTerm in txt:
+                        fullPath = os.path.join(currentPath, filePath)
+                        print(fullPath)
 
-                    files.append(fullPath)
+                        self.files.append(fullPath)
 
-    # print("files", files)
+        return self.files
+
 
 
 if __name__ == '__main__':
-    checkFiles()
+    challenge = challenge()
+    challenge.checkFiles("data", 'TODO')
+    print("files", challenge.files)
