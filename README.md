@@ -2,19 +2,20 @@
 
 There are versions of this in three languages: python, nodejs, golang
 
+
 To run the scripts, cd into the relevant directory and run the following:
 
-** Python **
+**Python**
 ```
 python3 challenge.py
 ```
 
-** NodeJS **
+**NodeJS**
 ```
 node challenge.js
 ```
 
-** Golang **
+**Golang**
 ```
 go run challenge.go
 ```
