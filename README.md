@@ -12,7 +12,7 @@ python3 challenge.py
 
 **NodeJS**
 ```
-node challenge.js
+npm run script
 ```
 
 **Golang**
@@ -29,7 +29,7 @@ python3 test.py
 
 **NodeJS**
 ```
-node challenge.js
+npm run test
 ```
 
 **Golang**
