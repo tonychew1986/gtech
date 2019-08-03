@@ -9,35 +9,52 @@ import (
     "fmt"
     "os"
     "path/filepath"
+    "io/ioutil"
+    "strings"
 )
 
-var extension = ".js"
 
 func main() {
-    var files [] string
+    var searchTerm = "TODO"
+    var extension = ".js"
 
     root := "./data"
+    checkFiles(root, extension, searchTerm)
+}
+
+func checkFiles(root string, extension string, searchTerm string) {
+    var files [] string
+
     err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
 
-			if info.IsDir() {
-				return nil
-			}
-			if filepath.Ext(path) == extension {
+      if info.IsDir() {
+        return nil
+      }
+      if filepath.Ext(path) == extension {
 
-				// Get absolute path of file
-				abs,err := filepath.Abs(path)
-				if err == nil {
-					 fmt.Println(abs)
-				}
-				files = append(files, abs)
-			}
-			return nil
+        // Read file if extension match
+        b, err := ioutil.ReadFile(path)
+        if err != nil {
+            panic(err)
+        }
+        s := string(b)
+
+        // Only display if file contains searchTerm
+        if(strings.Contains(s, searchTerm)) {
+          // Get absolute path of file
+          abs,err := filepath.Abs(path)
+          if err == nil {
+             fmt.Println(abs)
+          }
+          files = append(files, abs)
+        }
+      }
+      return nil
     })
 
-		if err != nil {
-			fmt.Printf("walk error [%v]\n", err)
-		}
+    if err != nil {
+      fmt.Printf("walk error [%v]\n", err)
+    }
 
-		fmt.Println(files)
-
+    fmt.Println(files)
 }

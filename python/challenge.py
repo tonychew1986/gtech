@@ -10,7 +10,7 @@ class challenge(object):
     def __init__(self, data={}):
         self.files = []
 
-    def checkFiles(self, path, searchTerm):
+    def checkFiles(self, path, extension, searchTerm):
         currentPath = os.path.dirname(os.path.abspath(__file__))
         print("currentPath", currentPath)
 
@@ -21,7 +21,7 @@ class challenge(object):
             # print("file", f)
 
             for file in f:
-                if '.js' in file:
+                if extension in file:
                     filePath = r + "/" + file
                     # print("filePath", filePath)
 
@@ -36,9 +36,11 @@ class challenge(object):
 
         return self.files
 
+    def clearFiles(self):
+        self.files = []
 
 
 if __name__ == '__main__':
     challenge = challenge()
-    challenge.checkFiles("data", 'TODO')
+    challenge.checkFiles("data", ".js", 'TODO')
     print("files", challenge.files)
