@@ -17,5 +17,22 @@ node challenge.js
 
 **Golang**
 ```
-go run challenge.go
+go run main.go
+```
+
+To run the unit test, cd into the relevant directory and run the following:
+
+**Python**
+```
+python3 test.py
+```
+
+**NodeJS**
+```
+node challenge.js
+```
+
+**Golang**
+```
+go test
 ```

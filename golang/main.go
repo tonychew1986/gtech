@@ -15,14 +15,12 @@ import (
 
 
 func main() {
-    var searchTerm = "TODO"
-    var extension = ".js"
+    result := checkfiles("./data", ".js", "TODO")
 
-    root := "./data"
-    checkFiles(root, extension, searchTerm)
+    fmt.Println(result)
 }
 
-func checkFiles(root string, extension string, searchTerm string) {
+func checkfiles(root string, extension string, searchTerm string) []string {
     var files [] string
 
     err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
@@ -57,4 +55,6 @@ func checkFiles(root string, extension string, searchTerm string) {
     }
 
     fmt.Println(files)
+
+    return files
 }
